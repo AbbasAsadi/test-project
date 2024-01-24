@@ -84,13 +84,16 @@ class $AssetsImagesGen {
   AssetGenImage get cappuccino3 =>
       const AssetGenImage('assets/images/cappuccino3.png');
 
+  /// File path: assets/images/loading.gif
+  AssetGenImage get loading => const AssetGenImage('assets/images/loading.gif');
+
   /// File path: assets/images/splash_bg.jpg
   AssetGenImage get splashBg =>
       const AssetGenImage('assets/images/splash_bg.jpg');
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [cappuccino1, cappuccino2, cappuccino3, splashBg];
+      [cappuccino1, cappuccino2, cappuccino3, loading, splashBg];
 }
 
 class Assets {
