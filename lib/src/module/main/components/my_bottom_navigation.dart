@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:gandom/gen/assets.gen.dart';
-import 'package:gandom/src/core/constants/my_border_radius.dart';
-import 'package:gandom/src/core/constants/my_dimensions.dart';
-import 'package:gandom/src/core/constants/my_paddings.dart';
-import 'package:gandom/src/core/ui_utils.dart';
-import 'package:gandom/src/modules/main/components/my_bottom_navigation_bar_item.dart';
-import 'package:gandom/src/modules/main/providers/main_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:test_project/gen/assets.gen.dart';
+import 'package:test_project/src/core/constants/my_colors.dart';
+import 'package:test_project/src/core/constants/my_dimensions.dart';
+import 'package:test_project/src/core/constants/my_paddings.dart';
+import 'package:test_project/src/module/main/components/my_bottom_navigation_bar_item.dart';
+import 'package:test_project/src/module/main/providers/main_provider.dart';
 
 class MyBottomNavigation extends StatelessWidget {
   const MyBottomNavigation({
@@ -17,58 +15,42 @@ class MyBottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: MyDimensions.medium,
+      bottom: MyDimensions.large,
       child: Consumer<MainProvider>(
         builder: (context, provider, child) {
           return Container(
-            width:
-            UIUtils.getScreenWidth(context) -
-                    32,
+            width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             margin: MyPaddings.horizontal20,
             padding: MyPaddings.all12,
-            decoration: BoxDecoration(
-              borderRadius: MyBorderRadius.all16,
-              gradient: const LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Color(0xffBB8C52),
-                  Color(0xffFFFFFF),
-                ],
-              ),
-            ),
+            color: MyColors.grey_10,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 MyBottomNavigationBarItem(
-                  onTap: () => provider.changeCurrentIndex(3),
-                  icon: Assets.iconsSvg.category,
-                  selectedIcon: Assets.iconsSvg.categorySelected,
-                  isSelected: provider.currentIndex == 3,
-                  title: AppLocalizations.of(context)!.brand,
-                ),
-                MyBottomNavigationBarItem(
-                  onTap: () => provider.changeCurrentIndex(2),
-                  icon: Assets.iconsSvg.heart,
-                  selectedIcon: Assets.iconsSvg.heartSelected,
-                  isSelected: provider.currentIndex == 2,
-                  title: AppLocalizations.of(context)!.favorite,
+                  onTap: () => provider.changeCurrentIndex(0),
+                  icon: Assets.icons.home,
+                  isSelected: provider.currentIndex == 0,
+                  title: 'Home',
                 ),
                 MyBottomNavigationBarItem(
                   onTap: () => provider.changeCurrentIndex(1),
-                  icon: Assets.iconsSvg.user,
-                  selectedIcon: Assets.iconsSvg.userSelected,
+                  icon: Assets.icons.favorite,
                   isSelected: provider.currentIndex == 1,
-                  title: AppLocalizations.of(context)!.profile,
+                  title: 'Favorite',
                 ),
                 MyBottomNavigationBarItem(
-                  onTap: () => provider.changeCurrentIndex(0),
-                  icon: Assets.iconsSvg.home,
-                  selectedIcon: Assets.iconsSvg.homeSelected,
-                  isSelected: provider.currentIndex == 0,
-                  title: AppLocalizations.of(context)!.appName,
+                  onTap: () => provider.changeCurrentIndex(2),
+                  icon: Assets.icons.cart,
+                  isSelected: provider.currentIndex == 2,
+                  title: 'Cart',
+                ),
+                MyBottomNavigationBarItem(
+                  onTap: () => provider.changeCurrentIndex(3),
+                  icon: Assets.icons.profile,
+                  isSelected: provider.currentIndex == 3,
+                  title: 'Profile',
                 ),
               ],
             ),

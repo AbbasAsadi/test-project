@@ -1,12 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gandom/gen/assets.gen.dart';
-import 'package:gandom/src/core/routing/my_pages.dart';
-import 'package:gandom/src/core/ui_utils.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../../../Sample/test_project/lib/src/core/secure_storage/my_secure_storage.dart';
+import 'package:test_project/gen/assets.gen.dart';
+import 'package:test_project/src/core/routing/my_pages.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -25,23 +22,22 @@ class _SplashScreen extends StatelessWidget {
     Timer(
       const Duration(milliseconds: 100),
       () async {
-        bool hasToken = await MySecureStorage.getInstance().hasToken();
-        if (hasToken) {
-          context.go(MyPages.main);
-        } else {
-          context.go(MyPages.welcome);
-        }
+        // bool hasToken = await MySecureStorage.getInstance().hasToken();
+        // if (hasToken) {
+        //   context.go(MyPages.main);
+        // } else {
+        //   context.go(MyPages.login);
+        // }
+        context.go(MyPages.main);
       },
     );
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Center(
-          child: Image.asset(
-            Assets.images.gandomGalleryOtp.path,
-            width: UIUtils.getConvertedWidth(context, 90),
-            height: UIUtils.getConvertedHeight(context, 192),
-          ),
+        body: Image.asset(
+          Assets.images.splashBg.path,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
         ),
       ),
     );

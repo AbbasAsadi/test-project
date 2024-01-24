@@ -1,22 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gandom/src/component/custom_widget/my_loading_widget.dart';
-import 'package:gandom/src/component/my_error_widget.dart';
-import 'package:gandom/src/component/server_error_widget.dart';
-import 'package:gandom/src/core/constants/my_colors.dart';
-import 'package:gandom/src/core/constants/my_dimensions.dart';
-import 'package:gandom/src/core/routing/my_pages.dart';
-import 'package:gandom/src/modules/brands/provider/brand_provider.dart';
-import 'package:gandom/src/modules/cart/provider/cart_provider.dart';
-import 'package:gandom/src/modules/category/provider/category_provider.dart';
-import 'package:gandom/src/modules/favorite/provider/favorite_provider.dart';
-import 'package:gandom/src/modules/main/components/main_drawer.dart';
-import 'package:gandom/src/modules/main/components/multi_landscape/mobile_main_widget.dart';
-import 'package:gandom/src/modules/main/components/multi_landscape/tablet_main_widget.dart';
-import 'package:gandom/src/modules/main/providers/main_provider.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:test_project/src/core/constants/my_colors.dart';
+import 'package:test_project/src/module/main/components/my_bottom_navigation.dart';
+import 'package:test_project/src/module/main/providers/main_provider.dart';
 
-import '../../../../../../../Sample/test_project/lib/src/core/api/dio_response.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key, this.currentIndex});
@@ -36,15 +23,11 @@ class MainScreen extends StatelessWidget {
               return provider;
             },
           ),
-          ChangeNotifierProvider(
-            create: (_) => CategoryProvider(),
-          ),
+          /*
           ChangeNotifierProvider(
             create: (_) => FavoriteProvider(),
           ),
-          ChangeNotifierProvider(
-            create: (_) => BrandProvider(),
-          ),
+
           ChangeNotifierProvider(
             create: (_) {
               var provider = CartProvider();
@@ -52,14 +35,18 @@ class MainScreen extends StatelessWidget {
               return provider;
             },
           ),
+          ChangeNotifierProvider(
+            create: (_) => ProfileProvider(),
+          ),
+          */
         ],
         child: Builder(builder: (context) {
           return Scaffold(
             key: Provider.of<MainProvider>(context).scaffoldKey,
             backgroundColor: MyColors.primaryDark,
             drawerEnableOpenDragGesture: false,
-            drawer: const MainDrawer(),
             body: const _MainScreen(),
+            bottomNavigationBar: const MyBottomNavigation(),
           );
         }));
   }
@@ -75,63 +62,107 @@ class _MainScreen extends StatefulWidget {
 class _MainScreenState extends State<_MainScreen> {
   @override
   void initState() {
-    Provider.of<MainProvider>(context, listen: false).init();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Provider.of<MainProvider>(context).profileFuture,
-      builder: (_, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-          case ConnectionState.waiting:
-          case ConnectionState.active:
-            return const MyLoadingWidget();
-          case ConnectionState.done:
-            if (snapshot.data != null) {
-              switch (snapshot.data?.status) {
-                case DioResponseStatus.success:
-                  Provider.of<MainProvider>(context)
-                      .saveProfileData(snapshot.data?.data);
-                  return _successfulWidget(context);
-                case DioResponseStatus.failure:
-                    return MyErrorWidget(
-                        errorMessage: snapshot.data?.data['detail'],
-                        onRetryClicked: () {
-                          setState(() {
-                            Provider.of<MainProvider>(context).init();
-                          });
-                        });
-                case DioResponseStatus.unauthorized:
-                  context.go(MyPages.welcome);
-                  return Container();
-                case DioResponseStatus.serverError:
-                  return ServerErrorWidget(
-                    onRetryClicked: () {
-                      setState(() {
-                        Provider.of<MainProvider>(context).init();
-                      });
-                    },
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 22, top: 30, right: 22),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomAppBar(),
+            const SizedBox(height: 25),
+            Text(
+              'Find the best',
+              style: Apptheme.tileLarge,
+            ),
+            Text(
+              'coffe for you',
+              style: Apptheme.tileLarge,
+            ),
+            const SizedBox(height: 28),
+            const SearchWidget(),
+            const SizedBox(height: 25),
+            // Chips
+            SizedBox(
+              height: 30,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: DataTmp.chips.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final coffe = DataTmp.chips[index];
+                  bool isActive = true;
+                  if (index != 0) {
+                    isActive = false;
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 27),
+                    child: Column(
+                      children: [
+                        Text(
+                          coffe,
+                          style: isActive
+                              ? Apptheme.chipActive
+                              : Apptheme.chipInactive,
+                        ),
+                        const SizedBox(height: 2),
+                        Icon(
+                          Icons.circle,
+                          color: isActive
+                              ? Apptheme.iconActiveColor
+                              : Colors.transparent,
+                          size: 12,
+                        )
+                      ],
+                    ),
                   );
+                },
+              ),
+            ),
+            const SizedBox(height: 20),
 
-                case DioResponseStatus.unknown:
-                case null:
-                  return const SizedBox();
-              }
-            } else {
-              return Container();
-            }
-        }
-      },
+            // ListView
+            Expanded(
+              child: ListView(
+                children: [
+                  //Vertical Card
+                  SizedBox(
+                    height: 247,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: DataTmp.coffeeList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return VerticalCardWidget(
+                          coffee: DataTmp.coffeeList[index],
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  Text('Special for you', style: Apptheme.subtileLarge),
+                  const SizedBox(height: 17),
+                  //Horizonal Card
+                  SizedBox(
+                    height: 350,
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: 10,
+                      itemBuilder: (BuildContext context, int index) {
+                        return const HorizontalCardWidget();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _successfulWidget(BuildContext context) {
-    return (MediaQuery.of(context).size.shortestSide >
-            MyDimensions.minTabletSize)
-        ? const TabletMainWidget()
-        : const MobileMainWidget();
-  }
-}
+
