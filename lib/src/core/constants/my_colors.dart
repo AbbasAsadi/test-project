@@ -13,7 +13,7 @@ abstract class MyColors {
   static const Color grey_60 = Color(0xFFA38874);
   static const Color grey_70 = Color(0xFF807C78);
   static const Color grey_80 = Color(0xFF817871);
-  static const Color grey_90 = Color(0xFF282828);
+  static const Color grey_90 = Color(0xFF3a3a3a);
 
   static const Color hintColor = Color(0xFFCBCBD4);
 }

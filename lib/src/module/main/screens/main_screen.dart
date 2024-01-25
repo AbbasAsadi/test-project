@@ -32,7 +32,7 @@ class MainScreen extends StatelessWidget {
             create: (_) => ProfileProvider(),
           ),
           */
-    ], child: _MainScreen());
+    ], child: const _MainScreen());
   }
 }
 
@@ -58,7 +58,7 @@ class _MainScreenState extends State<_MainScreen> {
         Expanded(
           child: getCurrentScreen(),
         ),
-        MyBottomNavigation()
+        const MyBottomNavigation()
       ],
     );
   }

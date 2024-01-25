@@ -33,6 +33,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/filter.svg
   String get filter => 'assets/icons/filter.svg';
 
+  /// File path: assets/icons/fire.svg
+  String get fire => 'assets/icons/fire.svg';
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
@@ -60,6 +63,7 @@ class $AssetsIconsGen {
         expresso,
         favorite,
         filter,
+        fire,
         home,
         location,
         notification,
@@ -84,16 +88,13 @@ class $AssetsImagesGen {
   AssetGenImage get cappuccino3 =>
       const AssetGenImage('assets/images/cappuccino3.png');
 
-  /// File path: assets/images/loading.gif
-  AssetGenImage get loading => const AssetGenImage('assets/images/loading.gif');
-
   /// File path: assets/images/splash_bg.jpg
   AssetGenImage get splashBg =>
       const AssetGenImage('assets/images/splash_bg.jpg');
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [cappuccino1, cappuccino2, cappuccino3, loading, splashBg];
+      [cappuccino1, cappuccino2, cappuccino3, splashBg];
 }
 
 class Assets {
@@ -101,6 +102,10 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const String loading = 'assets/loading.json';
+
+  /// List of all assets
+  static List<String> get values => [loading];
 }
 
 class AssetGenImage {
