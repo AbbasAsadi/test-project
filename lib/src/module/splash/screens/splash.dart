@@ -22,8 +22,8 @@ class _SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(
-      const Duration(seconds: 3),
-      () async {
+      const Duration(seconds: 4),
+      () {
         // bool hasToken = await MySecureStorage.getInstance().hasToken();
         // if (hasToken) {
         //   context.go(MyPages.main);

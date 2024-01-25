@@ -7,8 +7,8 @@ abstract class MyColors {
 
   static const Color grey_10 = Color(0xffF8F7FA);
   static const Color grey_20 = Color(0xFFE0D7D1);
-  static const Color grey_30 = Color(0xFFD1C3BA);
-  static const Color grey_40 = Color(0xFFC2B0A3);
+  static const Color grey_30 = Color(0xFFCBCBD4);
+  static const Color grey_40 = Color(0xFFD1C3BA);
   static const Color grey_50 = Color(0xFFB29C8B);
   static const Color grey_60 = Color(0xFFA38874);
   static const Color grey_70 = Color(0xFF807C78);

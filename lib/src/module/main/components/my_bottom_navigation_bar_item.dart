@@ -20,20 +20,30 @@ class MyBottomNavigationBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Column(
         children: [
+          isSelected
+              ? Container(
+                  width: MyDimensions.large,
+                  height: MyDimensions.small,
+                  color: MyColors.primary,
+                )
+              : Gap(MyDimensions.small),
+          Gap(
+            MyDimensions.medium,
+          ),
           SvgPicture.asset(icon,
+              height: MyDimensions.semiLarge,
               colorFilter: isSelected
-                  ? const ColorFilter.mode(MyColors.primary, BlendMode.src)
-                  : null),
+                  ? const ColorFilter.mode(MyColors.primary, BlendMode.srcIn)
+                  : const ColorFilter.mode(MyColors.grey_30, BlendMode.srcIn)),
           Gap(MyDimensions.light),
           Text(
             title,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                color: isSelected ? MyColors.primary : MyColors.grey_30),
           ),
         ],
       ),

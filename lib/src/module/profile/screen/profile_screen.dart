@@ -7,7 +7,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('profile screen\nnot implemented yet'),
+        child: Text('Profile screen\nnot implemented yet', textAlign: TextAlign.center,),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:test_project/src/core/constants/my_colors.dart';
 import 'package:test_project/src/module/cart/screen/cart_screen.dart';
 import 'package:test_project/src/module/favorite/screen/favorite_screen.dart';
 import 'package:test_project/src/module/home/screens/home.dart';
@@ -9,24 +8,15 @@ import 'package:test_project/src/module/main/providers/main_provider.dart';
 import 'package:test_project/src/module/profile/screen/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key, this.currentIndex});
-
-  final int? currentIndex;
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) {
-              var provider = MainProvider();
-              if (currentIndex != null) {
-                provider.changeCurrentIndex(currentIndex!);
-              }
-              return provider;
-            },
-          ),
-          /*
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (_) => MainProvider(),
+      ),
+      /*
           ChangeNotifierProvider(
             create: (_) => FavoriteProvider(),
           ),
@@ -42,16 +32,7 @@ class MainScreen extends StatelessWidget {
             create: (_) => ProfileProvider(),
           ),
           */
-        ],
-        child: Builder(builder: (context) {
-          return Scaffold(
-            key: Provider.of<MainProvider>(context).scaffoldKey,
-            backgroundColor: MyColors.primaryDark,
-            drawerEnableOpenDragGesture: false,
-            body: const _MainScreen(),
-            bottomNavigationBar: const MyBottomNavigation(),
-          );
-        }));
+    ], child: _MainScreen());
   }
 }
 
@@ -63,6 +44,8 @@ class _MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<_MainScreen> {
+  int currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -70,33 +53,39 @@ class _MainScreenState extends State<_MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: getCurrentScreen(),
+        ),
+        MyBottomNavigation()
+      ],
+    );
+  }
+
+  Widget getCurrentScreen() {
     return Consumer<MainProvider>(
       builder: (context, provider, child) {
-        return Column(
-          children: [
-            getCurrentScreen(
-              provider.currentIndex,
-              provider.showCategoryLayer,
-            )
-          ],
-        );
+        switch (provider.currentIndex) {
+          case 0:
+            return const HomeScreen();
+
+          case 1:
+            return const FavoriteScreen();
+          case 2:
+            return const CartScreen();
+          case 3:
+            return const ProfileScreen();
+          default:
+            return const HomeScreen();
+        }
       },
     );
   }
 
-  Widget getCurrentScreen(int selectedIndex, bool showCategoryLayer) {
-    switch (selectedIndex) {
-      case 0:
-        return const HomeScreen();
-
-      case 1:
-        return const FavoriteScreen();
-      case 2:
-        return const CartScreen();
-      case 3:
-        return const ProfileScreen();
-      default:
-        return const HomeScreen();
-    }
+  changeCurrentIndex(int index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 }

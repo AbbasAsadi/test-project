@@ -1,4 +1,3 @@
-
 import 'package:go_router/go_router.dart';
 import 'package:test_project/src/core/routing/my_pages.dart';
 import 'package:test_project/src/module/main/screens/main_screen.dart';
@@ -12,13 +11,7 @@ class MyRoutes {
           path: MyPages.splash,
           builder: (context, state) => const SplashScreen()),
       GoRoute(
-          path: MyPages.main,
-          builder: (context, state) {
-            int? index = state.extra as int?;
-            return MainScreen(
-              currentIndex: index,
-            );
-          }),
+          path: MyPages.main, builder: (context, state) => const MainScreen()),
       GoRoute(
           path: MyPages.productDetailScreen,
           builder: (context, state) {
