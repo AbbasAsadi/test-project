@@ -15,11 +15,20 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add.svg
   String get add => 'assets/icons/add.svg';
 
+  /// File path: assets/icons/back.svg
+  String get back => 'assets/icons/back.svg';
+
   /// File path: assets/icons/cappuccino.svg
   String get cappuccino => 'assets/icons/cappuccino.svg';
 
   /// File path: assets/icons/cart.svg
   String get cart => 'assets/icons/cart.svg';
+
+  /// File path: assets/icons/chocolate.svg
+  String get chocolate => 'assets/icons/chocolate.svg';
+
+  /// File path: assets/icons/coffee.svg
+  String get coffee => 'assets/icons/coffee.svg';
 
   /// File path: assets/icons/cold_brew.svg
   String get coldBrew => 'assets/icons/cold_brew.svg';
@@ -57,8 +66,11 @@ class $AssetsIconsGen {
   /// List of all assets
   List<String> get values => [
         add,
+        back,
         cappuccino,
         cart,
+        chocolate,
+        coffee,
         coldBrew,
         expresso,
         favorite,

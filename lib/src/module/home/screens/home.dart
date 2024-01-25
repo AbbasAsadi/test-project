@@ -8,6 +8,7 @@ import 'package:test_project/src/core/constants/my_border_radius.dart';
 import 'package:test_project/src/core/constants/my_colors.dart';
 import 'package:test_project/src/core/constants/my_dimensions.dart';
 import 'package:test_project/src/module/home/components/category_list_item_widget.dart';
+import 'package:test_project/src/module/home/components/product_list_item_widget.dart';
 import 'package:test_project/src/module/home/components/search_widget.dart';
 import 'package:test_project/src/module/home/providers/home_provider.dart';
 import 'package:test_project/src/module/main/providers/main_provider.dart';
@@ -118,100 +119,7 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           Map<String, dynamic> childItem =
                               provider.selectedCategoryItem['items'][index];
-                          return Card(
-                            borderOnForeground: true,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: MyBorderRadius.all16),
-                            color: Colors.white,
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                    borderRadius: MyBorderRadius.all16,
-                                    child: Stack(
-                                      children: [
-                                        Image.asset(
-                                          childItem['image']!,
-                                          width: 140,
-                                          height: 99,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        Positioned(
-                                          top: MyDimensions.light,
-                                          right: MyDimensions.light,
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: MyDimensions.small,
-                                                vertical:
-                                                    MyDimensions.small / 2),
-                                            decoration: BoxDecoration(
-                                                color: MyColors.primary,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        MyDimensions.xxLarge)),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                SvgPicture.asset(
-                                                    Assets.icons.star),
-                                                Gap(MyDimensions.small),
-                                                Text(
-                                                  '4.9',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headlineSmall
-                                                      ?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          color: Colors.white),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    )),
-                                Padding(
-                                  padding: EdgeInsets.all(MyDimensions.light),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            childItem['title']!,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .displayLarge
-                                                ?.copyWith(fontSize: 16),
-                                          ),
-                                          Text(childItem['description']!,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .displaySmall),
-                                          Text(childItem['price']!,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .titleSmall),
-                                        ],
-                                      ),
-                                      Gap(MyDimensions.medium),
-                                      Container(
-                                        padding:
-                                            EdgeInsets.all(MyDimensions.light),
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: MyColors.primary),
-                                        child:
-                                            SvgPicture.asset(Assets.icons.add),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
+                          return ProductListItemWidget(childItem: childItem);
                         },
                       );
                     },
