@@ -16,7 +16,7 @@ class AddToCartWidget extends StatelessWidget {
           vertical: MyDimensions.semiLarge),
       decoration: BoxDecoration(
         borderRadius:
-        BorderRadius.circular(MyDimensions.xxLarge),
+        MyBorderRadius.allXXLarge,
         color: MyColors.primary,
       ),
       alignment: Alignment.center,

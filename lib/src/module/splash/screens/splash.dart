@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:test_project/gen/assets.gen.dart';
+import 'package:test_project/src/core/constants/my_colors.dart';
 import 'package:test_project/src/core/constants/my_dimensions.dart';
 import 'package:test_project/src/core/routing/my_pages.dart';
 class SplashScreen extends StatelessWidget {
@@ -56,7 +57,7 @@ class _SplashScreen extends StatelessWidget {
                 Text(
                   'Good coffee,\nGood friends,\nlet it blends',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: const Color(0xFFCBCBD4),
+                        color: MyColors.grey_30,
                       ),
                 ),
                 Gap(MyDimensions.light),

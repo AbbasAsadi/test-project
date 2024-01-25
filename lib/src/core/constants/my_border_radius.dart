@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/src/core/constants/my_dimensions.dart';
 
 class MyBorderRadius {
   MyBorderRadius._();
@@ -11,5 +12,5 @@ class MyBorderRadius {
   static BorderRadius all8 = BorderRadius.circular(8);
   static BorderRadius all12 = BorderRadius.circular(12);
   static BorderRadius all16 = BorderRadius.circular(16);
-  static BorderRadius all56 = BorderRadius.circular(56);
+  static BorderRadius allXXLarge = BorderRadius.circular(MyDimensions.xxLarge);
 }

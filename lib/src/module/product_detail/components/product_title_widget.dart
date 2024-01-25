@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:test_project/gen/assets.gen.dart';
+import 'package:test_project/src/core/constants/my_border_radius.dart';
 import 'package:test_project/src/core/constants/my_colors.dart';
 import 'package:test_project/src/core/constants/my_dimensions.dart';
+import 'package:test_project/src/core/constants/my_paddings.dart';
 
 class ProductTitleWidget extends StatelessWidget {
   const ProductTitleWidget({
@@ -41,11 +43,11 @@ class ProductTitleWidget extends StatelessWidget {
           ),
           const Spacer(),
           Container(
-            padding: EdgeInsets.all(MyDimensions.light),
+            padding: MyPaddings.allLight,
             decoration: BoxDecoration(
                 color: MyColors.primary,
                 borderRadius:
-                BorderRadius.circular(MyDimensions.xxLarge)),
+                MyBorderRadius.allXXLarge),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

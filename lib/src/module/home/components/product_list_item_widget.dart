@@ -6,6 +6,7 @@ import 'package:test_project/gen/assets.gen.dart';
 import 'package:test_project/src/core/constants/my_border_radius.dart';
 import 'package:test_project/src/core/constants/my_colors.dart';
 import 'package:test_project/src/core/constants/my_dimensions.dart';
+import 'package:test_project/src/core/constants/my_paddings.dart';
 import 'package:test_project/src/core/routing/my_pages.dart';
 
 class ProductListItemWidget extends StatelessWidget {
@@ -52,7 +53,7 @@ class ProductListItemWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: MyColors.primary,
                             borderRadius:
-                                BorderRadius.circular(MyDimensions.xxLarge)),
+                                MyBorderRadius.allXXLarge),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -74,7 +75,7 @@ class ProductListItemWidget extends StatelessWidget {
                   ],
                 )),
             Padding(
-              padding: EdgeInsets.all(MyDimensions.light),
+              padding: MyPaddings.allLight,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -86,7 +87,7 @@ class ProductListItemWidget extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .displayLarge
-                            ?.copyWith(fontSize: 16),
+                            ?.copyWith(fontSize: MyDimensions.medium),
                       ),
                       Text(childItem['description']!,
                           style: Theme.of(context).textTheme.displaySmall),

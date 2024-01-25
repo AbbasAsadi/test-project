@@ -6,6 +6,7 @@ import 'package:test_project/gen/assets.gen.dart';
 import 'package:test_project/src/core/constants/my_border_radius.dart';
 import 'package:test_project/src/core/constants/my_colors.dart';
 import 'package:test_project/src/core/constants/my_dimensions.dart';
+import 'package:test_project/src/core/constants/my_paddings.dart';
 import 'package:test_project/src/module/home/components/app_bar_widget.dart';
 import 'package:test_project/src/module/home/components/category_list_item_widget.dart';
 import 'package:test_project/src/module/home/components/product_list_item_widget.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 const AppBarWidget(),
                 Gap(MyDimensions.medium),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: MyDimensions.large),
+                  padding: MyPaddings.horizontalLarge,
                   child: Text(
                     'Good morning, Dityo',
                     style: Theme.of(context).textTheme.titleMedium,
@@ -40,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                 const SearchWidget(),
                 Gap(MyDimensions.semiLarge),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: MyDimensions.large),
+                  padding: MyPaddings.horizontalLarge,
                   child: Text(
                     'Categories',
                     style: Theme.of(context).textTheme.titleMedium,
@@ -53,8 +54,7 @@ class HomeScreen extends StatelessWidget {
                     builder: (_, provider, child) {
                       return ListView.separated(
                         physics: const BouncingScrollPhysics(),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: MyDimensions.large),
+                        padding: MyPaddings.horizontalLarge,
                         scrollDirection: Axis.horizontal,
                         itemCount: provider.categoryList.length,
                         separatorBuilder: (context, index) =>
@@ -81,8 +81,7 @@ class HomeScreen extends StatelessWidget {
                       return ListView.separated(
                         controller: provider.childCategoryListItemController,
                         physics: const BouncingScrollPhysics(),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: MyDimensions.large),
+                        padding: MyPaddings.horizontalLarge,
                         scrollDirection: Axis.horizontal,
                         itemCount:
                             provider.selectedCategoryItem['items'].length,
@@ -99,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Gap(MyDimensions.xLarge),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: MyDimensions.large),
+                  padding: MyPaddings.horizontalLarge,
                   child: Row(
                     children: [
                       Text(
@@ -109,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                       Gap(MyDimensions.small),
                       SvgPicture.asset(
                         Assets.icons.fire,
-                        height: 20,
+                        height: MyDimensions.medium + MyDimensions.small,
                       ),
                     ],
                   ),
@@ -119,12 +118,12 @@ class HomeScreen extends StatelessWidget {
                   elevation: 5,
                   color: Colors.white,
                   borderOnForeground: true,
-                  margin: EdgeInsets.symmetric(horizontal: MyDimensions.large),
+                  margin: MyPaddings.horizontalLarge,
                   shape: RoundedRectangleBorder(
                     borderRadius: MyBorderRadius.all16,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(MyDimensions.light),
+                    padding: MyPaddings.allLight,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -148,8 +147,7 @@ class HomeScreen extends StatelessWidget {
                                     vertical: MyDimensions.small / 2),
                                 decoration: BoxDecoration(
                                     color: MyColors.primary,
-                                    borderRadius: BorderRadius.circular(
-                                        MyDimensions.xxLarge)),
+                                    borderRadius: MyBorderRadius.allXXLarge),
                                 child: Text(
                                   'Limited',
                                   style: Theme.of(context)
@@ -161,7 +159,8 @@ class HomeScreen extends StatelessWidget {
                               Gap(MyDimensions.xLight),
                               Text(
                                 'Buy 1 get 1 free if you buy with Gopay',
-                                style: Theme.of(context).textTheme.headlineLarge,
+                                style:
+                                    Theme.of(context).textTheme.headlineLarge,
                               ),
                             ],
                           ),
@@ -179,4 +178,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

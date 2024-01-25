@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:test_project/src/core/constants/my_border_radius.dart';
 import 'package:test_project/src/core/constants/my_colors.dart';
 import 'package:test_project/src/core/constants/my_dimensions.dart';
 import 'package:test_project/src/module/product_detail/provider/product_provider.dart';
@@ -23,8 +24,7 @@ class CoffeeSizeRowWidget extends StatelessWidget {
                     ? MyColors.primary
                     : Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      MyDimensions.xLarge),
+                  borderRadius: MyBorderRadius.allXXLarge,
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -55,8 +55,7 @@ class CoffeeSizeRowWidget extends StatelessWidget {
                     ? MyColors.primary
                     : Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      MyDimensions.xLarge),
+                  borderRadius: MyBorderRadius.allXXLarge,
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -87,8 +86,7 @@ class CoffeeSizeRowWidget extends StatelessWidget {
                     ? MyColors.primary
                     : Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      MyDimensions.xLarge),
+                  borderRadius: MyBorderRadius.allXXLarge,
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(

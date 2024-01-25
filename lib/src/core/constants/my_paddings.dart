@@ -2,31 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:test_project/src/core/constants/my_dimensions.dart';
 
 class MyPaddings {
-  static const loginPadding = EdgeInsets.symmetric(
-    horizontal: 65,
-    vertical: 40,
-  );
-  static const all2 = EdgeInsets.all(2);
-  static const all4 = EdgeInsets.all(4);
-  static var all8 = EdgeInsets.all(MyDimensions.light);
-  static var all12 = EdgeInsets.all(MyDimensions.xLight);
-  static var all16 = EdgeInsets.all(MyDimensions.medium);
-  static var all24 = EdgeInsets.all(MyDimensions.semiLarge);
+  static var allLight = EdgeInsets.all(MyDimensions.light);
+  static var allMedium = EdgeInsets.all(MyDimensions.medium);
+  static var allSemiLarge = EdgeInsets.all(MyDimensions.semiLarge);
 
-  static var homeAppbar = EdgeInsets.fromLTRB(
-    MyDimensions.medium,
-    MyDimensions.semiLarge,
-    MyDimensions.medium,
-    MyDimensions.medium,
-  );
+  static var horizontalMedium =
+  EdgeInsets.symmetric(horizontal: MyDimensions.medium);
 
-  static var searchWidget = EdgeInsets.symmetric(
-    horizontal: MyDimensions.medium,
-    vertical: MyDimensions.light,
-  );
+  static var horizontalLarge =
+      EdgeInsets.symmetric(horizontal: MyDimensions.large);
 
-  static var horizontal20 =
-      EdgeInsets.symmetric(horizontal: MyDimensions.medium + MyDimensions.small);
 
-  static var mainPageLists = EdgeInsets.only(bottom: MyDimensions.xxLarge * 1.25);
 }

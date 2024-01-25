@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:test_project/src/core/constants/my_border_radius.dart';
 import 'package:test_project/src/core/constants/my_colors.dart';
 import 'package:test_project/src/core/constants/my_dimensions.dart';
+import 'package:test_project/src/core/constants/my_paddings.dart';
 
 class CategoryListItemWidget extends StatefulWidget {
   const CategoryListItemWidget(
@@ -27,10 +29,10 @@ class _CategoryListItemWidgetState extends State<CategoryListItemWidget> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        padding: EdgeInsets.all(MyDimensions.light),
+        padding: MyPaddings.allLight,
         decoration: BoxDecoration(
             color: widget.isSelected ? MyColors.primary : Colors.white,
-            borderRadius: BorderRadius.circular(MyDimensions.xxLarge)),
+            borderRadius: MyBorderRadius.allXXLarge),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
